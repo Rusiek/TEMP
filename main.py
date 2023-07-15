@@ -24,8 +24,8 @@ version = 5
 print("Enter the version of the model:")
 print("1. small     (1 GB RAM required)")
 print("2. medium    (5 GB RAM required)")
-print("3. large     (10 GB GB RAM required)")
-print("4. complete  (12 GB RAM required)")
+print("3. large     (10 GB RAM required)")
+print("4. complete  (18 GB RAM required)")
 if False:
     print("5. test")
 version = int(input("Version: "))
@@ -40,11 +40,11 @@ elif version == 4:
     BATCH_NUM = 18
 
 print("Loading data...")
-TITLES = [np.load(f"./svd_matrix/titles/{'test_' if TEST else ''}titles_{str(i).rjust(2, '0')}.pkl", allow_pickle=True) for i in range(BATCH_NUM)]
-VOC = [np.load(f"./svd_matrix/voc/{'test_' if TEST else ''}voc_{str(i).rjust(2, '0')}.pkl", allow_pickle=True) for i in range(BATCH_NUM)]
-U = [np.load(f"./svd_matrix/u/{'test_' if TEST else ''}u_{str(i).rjust(2, '0')}.npy") for i in range(BATCH_NUM)]
-S = [np.load(f"./svd_matrix/s/{'test_' if TEST else ''}s_{str(i).rjust(2, '0')}.npy") for i in range(BATCH_NUM)]
-V = [np.load(f"./svd_matrix/v/{'test_' if TEST else ''}v_{str(i).rjust(2, '0')}.npy") for i in range(BATCH_NUM)]
+TITLES = [np.load(f"./svd_matrix/titles/{'test_' if TEST else ''}titles_{i}.pkl", allow_pickle=True) for i in range(BATCH_NUM)]
+VOC = [np.load(f"./svd_matrix/voc/{'test_' if TEST else ''}voc_{i}.pkl", allow_pickle=True) for i in range(BATCH_NUM)]
+U = [np.load(f"./svd_matrix/u/{'test_' if TEST else ''}u_{i}.npy") for i in range(BATCH_NUM)]
+S = [np.load(f"./svd_matrix/s/{'test_' if TEST else ''}s_{i}.npy") for i in range(BATCH_NUM)]
+V = [np.load(f"./svd_matrix/v/{'test_' if TEST else ''}v_{i}.npy") for i in range(BATCH_NUM)]
 
 US = [make_tf_idf(u, s) for u, s in zip(U, S)]
 print("Loading complete!\n")
